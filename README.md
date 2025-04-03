@@ -28,4 +28,4 @@ ao iniciar você vai ver uma lista com os projetos que você definiu em config.j
 
 # Nix
 
-Se você usa Nix, você pode usar o meu overlay [aqui](https://github.com/Jhuan-Nycolas/NixDotfiles/tree/main/Overlays/Reop)
+Se você usa Nix/NixOS, você pode usar o meu [overlay](https://github.com/Jhuan-Nycolas/NixDotfiles/tree/main/Overlays/Reop)
