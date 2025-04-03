@@ -6,15 +6,15 @@ Você vai criar um arquivo de configuração em ~/.config/reop/config.json
 
 Nesse arquivo você vai ter duas opções
 
-{
-  "editor": "comando para iniciar o seu editor, exemplo: nvim",
-  "projects": {
-    lista de projetos, exemplo:
-    "Reop": {
-      path = "~/Reop"
-    }
-  }
-}
+{<br>
+  "editor": "comando para iniciar o seu editor, exemplo: nvim",<br>
+  "projects": {<br>
+    lista de projetos, exemplo:<br>
+    "Reop": {<br>
+      path = "~/Reop"<br>
+    }<br>
+  }<br>
+}<br>
 
 depois crie um scrip sh em /bin com o seguinte conteúdo:
 
