@@ -25,3 +25,7 @@ python /caminho/para/open.py
 ```
 
 ao iniciar você vai ver uma lista com os projetos que você definiu em config.json
+
+# Nix
+
+Se você usa Nix, você pode usar o meu overlay em `https://github.com/Jhuan-Nycolas/NixDotfiles/tree/main/Overlays/Reop`
