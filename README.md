@@ -10,7 +10,7 @@ Nesse arquivo você vai ter duas opções
 {
   "editor": "comando para iniciar o seu editor, exemplo: nvim",
   "projects": {
-    lista de projetos, exemplo:
+    // lista de projetos, exemplo:
     "Reop": {
       path = "~/Reop"
     }
