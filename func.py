@@ -3,7 +3,6 @@ from time import sleep
 
 
 def proj(editor, path, shell, cmdp):
-    print(shell)
     if shell == None:
         cmd = f"cd {path}"
         print(f"\nEntrando no diretório {path}")
