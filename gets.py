@@ -6,6 +6,13 @@ def setConfig(conf):
     config = conf
 
 
+def getCmdp():
+    if "shell" in config:
+        return config["shell"]
+    else:
+        return "bash"
+
+
 def getEditor():
     if "editor" in config:
         return config["editor"]
@@ -17,4 +24,4 @@ def getProjects():
     if "projects" in config:
         return config["projects"]
     else:
-        return {""}
+        return {}
