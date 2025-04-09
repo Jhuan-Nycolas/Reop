@@ -35,29 +35,7 @@ E, por fim, ative-o no seu `home.nix` usando:
 
 ## Outras distribuições
 
-Ainda não há uma versão para outras distribuições além do NixOS.
-
-Se quiser, pode usar o [Nix Package Manager](https://nixos.org) para utilizar o flake até que eu compile o Reop para outras distribuições Linux.
-
-Caso não queira usar o Nix, pode instalar o Python na sua distribuição:
-
-- **Fedora**: `sudo dnf install python`
-- **Arch Linux**: `sudo pacman -Syu python`
-- **Ubuntu**: `sudo apt install python`
-
-Depois, crie o arquivo `/usr/bin/reop` com o seguinte conteúdo:
-
-```
-#!/bin/bash
-
-python /caminho/para/open.py
-```
-
-Então, execute:
-
-```
-chmod +x /usr/bin/reop
-```
+Para instalar o Reop em outras distros linux, basta baixar o binário na pasta dist e mover para `/usr/bin`
 
 Após isso, será necessário reiniciar o terminal e, em seguida, poderá executar `reop` no terminal para visualizar os projetos que configurou.
 
