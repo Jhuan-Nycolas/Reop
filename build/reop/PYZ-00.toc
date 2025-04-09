@@ -265,6 +265,7 @@
   ('pprint',
    '/nix/store/njpnqszjaj6k38cp4466ygn74n392xy1-python3-3.13.2/lib/python3.13/pprint.py',
    'PYMODULE'),
+  ('program', '/home/tux/Reop/src/program.py', 'PYMODULE'),
   ('py_compile',
    '/nix/store/njpnqszjaj6k38cp4466ygn74n392xy1-python3-3.13.2/lib/python3.13/py_compile.py',
    'PYMODULE'),
