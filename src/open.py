@@ -2,6 +2,22 @@ from gets import *
 from func import proj
 from json import load
 from os import getlogin
+import argparse
+
+version = "0.2.0"
+
+parser = argparse.ArgumentParser(
+    description="Reop - Gerenciador de projetos para Linux"
+)
+
+parser.add_argument(
+    "-v", "--version", action="store_true", help="Exibe a versão do programa"
+)
+
+args = parser.parse_args()
+
+if args.version:
+    print(f"Reop - {version}")
 
 with open(f"/home/{getlogin()}/.config/reop/config.json") as config:
     conf = load(config)
