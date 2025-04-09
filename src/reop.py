@@ -16,49 +16,52 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-if args.version:
-    print(f"Reop - {version}")
 
-with open(f"/home/{getlogin()}/.config/reop/config.json") as config:
-    conf = load(config)
-    setConfig(conf)
+def main():
+    with open(f"/home/{getlogin()}/.config/reop/config.json") as config:
+        conf = load(config)
+        setConfig(conf)
 
-shell = getCmdp()
+    shell = getCmdp()
 
-editor = getEditor()
+    editor = getEditor()
 
-projects = getProjects()
+    projects = getProjects()
 
-opt = 1
-
-print("0. Exit")
-
-for project in projects:
-    path = conf["projects"][project]["path"]
-    print(f"{opt}. {project}: {path}")
-    opt += 1
-
-print()
-
-enter = 0
-
-
-def choose():
-    global enter
-    enter = int(input("> "))
-
-
-try:
-    choose()
-except TypeError:
-    print("Por favor escolha um número. Please choose a number.")
-    choose()
-
-if enter != 0:
     opt = 1
+
+    print("0. Exit")
 
     for project in projects:
         path = conf["projects"][project]["path"]
-        if enter == opt:
-            proj(editor, path, conf["projects"][project]["nixShell"], shell)
+        print(f"{opt}. {project}: {path}")
         opt += 1
+
+    print()
+
+    enter = 0
+
+    def choose():
+        global enter
+        enter = int(input("> "))
+
+    try:
+        choose()
+    except TypeError:
+        print("Por favor escolha um número. Please choose a number.")
+        choose()
+
+    if enter != 0:
+        opt = 1
+
+        for project in projects:
+            path = conf["projects"][project]["path"]
+            if enter == opt:
+                proj(editor, path, conf["projects"][project]["nixShell"], shell)
+            opt += 1
+
+
+if args.version:
+    print(f"Reop - {version}")
+else:
+    main()
