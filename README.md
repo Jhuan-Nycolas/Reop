@@ -120,7 +120,7 @@ Se você usa Nix/NixOS, pode configurar o Reop para abrir um projeto com um DevS
     "Projeto 1": {
       "nixShell": {
         "path": "~/caminho/para/um/flake.nix",
-        "host": "aqui vem o que viria depois do # (pode ser vazio)"
+        "host": "aqui vem o que viria depois do # (vazio para default)"
       },
       "path": "~/pasta/para/o/projeto1"
     },
