@@ -2,51 +2,72 @@
 
 ## Sobre
 
-Um gerenciador de projetos pra linux
+Um gerenciador de projetos para Linux.
 
 ## Instalação
 
 ### Nix
 
-- [Overlay](https://github.com/Jhuan-Nycolas/NixDotfiles/tree/main/Overlays/Reop)
+Você pode procurar no [FlakeHub](https://flakehub.com) por "Jhuan Reop" e usar a ferramenta `fh` para utilizar o flake.
 
-**Preparando flake e logo estará disponível no [FlakeHub](https://www.flakehub.com)**
+Se, por algum motivo, você não quiser usar o FlakeHub, pode adicionar um input no seu flake do Home Manager:
 
-## Outras distros
+```
+reop.url = "github:Jhuan-Nycolas/Reop";
+```
 
-Eu ainda não buildei uma versão para outras distros fora o NixOS.
+Depois, importe-o em **modules**:
 
-Se você quiser pode usar o [Nix](https://nixos.org) Package Manager para usar o meu [Overlay](https://github.com/Jhuan-Nycolas/NixDotfiles/tree/main/Overlays/Reop) até eu buildar o Reop para outras distribuições Linux
+```
+modules = [
+  # ...
+  inputs.reop.homeManagerModules.reop
+];
+```
 
-Se você não quer usar o Nix por algum motivo você pode instalar o python na sua distro:
+E, por fim, ative-o no seu `home.nix` usando:
 
- - **Fedora**: `sudo dnf install python`
- - **Arch Linux**: `sudo pacman -Syu python`
- - **Ubuntu**: `sudo apt install python`
+```
+{
+  reop.enable = true;
+}
+```
 
-Depois crie o arquivo reop em /usr/bin com o seguinte conteúdo
+## Outras distribuições
+
+Ainda não há uma versão para outras distribuições além do NixOS.
+
+Se quiser, pode usar o [Nix Package Manager](https://nixos.org) para utilizar o flake até que eu compile o Reop para outras distribuições Linux.
+
+Caso não queira usar o Nix, pode instalar o Python na sua distribuição:
+
+- **Fedora**: `sudo dnf install python`
+- **Arch Linux**: `sudo pacman -Syu python`
+- **Ubuntu**: `sudo apt install python`
+
+Depois, crie o arquivo `/usr/bin/reop` com o seguinte conteúdo:
 
 ```
 #!/bin/bash
 
-python3 /caminho/para/open.py
+python /caminho/para/open.py
 ```
 
-depois execute:
+Então, execute:
 
 ```
-chmod +x ./reop
+chmod +x /usr/bin/reop
 ```
 
-Depois disso você vai precisar reiniciar o seu terminal e logo após poderá executar reop no terminal e ver os projetos que você configurou
+Após isso, será necessário reiniciar o terminal e, em seguida, poderá executar `reop` no terminal para visualizar os projetos que configurou.
 
 ## Configuração
 
-Crie um arquivo em `~/.config/reop/config.json`
+Crie o arquivo `~/.config/reop/config.json`.
 
-### Definindo editor e o Shell padrão
+### Definindo editor e shell padrão
 
-Para definir o editor que será usado nos projetos adicione:
+Para definir o editor que será utilizado nos projetos, adicione:
 
 ```
 {
@@ -54,9 +75,9 @@ Para definir o editor que será usado nos projetos adicione:
 }
 ```
 
-**O valor na opção editor precisa ser o comando que executa o editor**
+**O valor da opção `editor` deve ser o comando que executa o editor.**
 
-Para definir o Shell que será usado use:
+Para definir o shell que será utilizado, use:
 
 ```
 {
@@ -67,7 +88,7 @@ Para definir o Shell que será usado use:
 
 ### Definindo projetos
 
-Para definir os projetos você usa as seguintes opções
+Para configurar os projetos, utilize as seguintes opções:
 
 ```
 {
@@ -75,11 +96,11 @@ Para definir os projetos você usa as seguintes opções
   "shell": "fish",
 
   "projects": {
-    "Nome Do Projeto1": {
+    "Projeto 1": {
       "path": "~/pasta/para/o/projeto1"
     },
-    
-    "Nome Do Projeto2": {
+
+    "Projeto 2": {
       "path": "~/pasta/para/o/projeto2"
     }
   }
@@ -88,7 +109,7 @@ Para definir os projetos você usa as seguintes opções
 
 ## Usando Nix DevShells
 
-Se você usa Nix/NixOS você pode definir o Reop para  abrir um projeto com um DevShell que você configurou. Para fazer isso use:
+Se você usa Nix/NixOS, pode configurar o Reop para abrir um projeto com um DevShell que você definiu. Para isso, use:
 
 ```
 {
@@ -96,18 +117,45 @@ Se você usa Nix/NixOS você pode definir o Reop para  abrir um projeto com um D
   "shell": "fish",
 
   "projects": {
-    "Nome Do Projeto1": {
-	  "nixShell": {
-	    "path": "~/caminho/para/um/flake.nix",
-	    "host": "aqui vem oque viria depois do #, aqui pode ser vazio também"
-	  },
-
+    "Projeto 1": {
+      "nixShell": {
+        "path": "~/caminho/para/um/flake.nix",
+        "host": "aqui vem o que viria depois do # (pode ser vazio)"
+      },
       "path": "~/pasta/para/o/projeto1"
     },
-    
-    "Nome Do Projeto2": {
+
+    "Projeto 2": {
       "path": "~/pasta/para/o/projeto2"
     }
   }
+}
+```
+
+### Configurando Reop com Nix
+
+Se preferir configurar o Reop de forma declarativa, pode definir as opções normalmente em um arquivo `.nix`. Por exemplo:
+
+```
+{
+  reop = {
+    enable = true; # Necessário para instalar o Reop
+
+    settings = {
+      editor = "nix run github:Jhuan-Nycolas/Nvim";
+      shell = "fish";
+
+      projects = {
+        projeto1 = {
+          path = "~/Projeto1";
+
+          nixShell = {
+            path = "~/Projeto1/Nix";
+            host = ""; # Indica que usará o host padrão
+          };
+        };
+      };
+    };
+  };
 }
 ```
