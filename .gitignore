@@ -1,4 +1,4 @@
-./.env/
-./build/
-./reop.spec
-./Development/
+.env/
+build/
+reop.spec
+Development/
